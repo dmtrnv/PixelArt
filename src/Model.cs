@@ -4,51 +4,51 @@ using System.Threading.Tasks;
 
 namespace PixelArt
 {
-	internal class Model
-	{
+    internal class Model
+    {
         public Bitmap CurrentImage { get; set; } 
-		public Dictionary<int, PixelizedImage> Images { get; set; } = new Dictionary<int, PixelizedImage>();
-		public static readonly int[] PixelSize = new int[] { 1, 2, 4, 8, 16, 32 };
+        public Dictionary<int, PixelizedImage> Images { get; set; } = new Dictionary<int, PixelizedImage>();
+        public static readonly int[] PixelSize = new int[] { 1, 2, 4, 8, 16, 32 };
         public static readonly string[] ColorType = new string[] { "Original", "Grayscale" };
         private object @lock = new object();
 
-		public Model()
-		{		
-		}
+        public Model()
+        {		
+        }
 
-		public void GenerateImages()
-		{
+        public void GenerateImages()
+        {
             if(Images.Count != 0)
-			{
+            {
                 foreach(var key in Images.Keys)
-				{
+                {
                     Images[key].Dispose();
-				}
-			}
+                }
+            }
 
             Parallel.ForEach(PixelSize, size =>
-			{
-				var originalColor = Pixelize(size);
-				var grayscale = ChangeColorToGrayscale(originalColor);
+                {
+                    var originalColor = Pixelize(size);
+                    var grayscale = ChangeColorToGrayscale(originalColor);
 
-				if (Images.ContainsKey(size))
-				{
-					Images[size] = new PixelizedImage(originalColor, grayscale);
-				}
-				else
-				{
-					Images.Add(size, new PixelizedImage(originalColor, grayscale));
-				}
-			});
-		}
+                    if (Images.ContainsKey(size))
+                    {
+                        Images[size] = new PixelizedImage(originalColor, grayscale);
+                    }
+                    else
+                    {
+                        Images.Add(size, new PixelizedImage(originalColor, grayscale));
+                    }
+                });
+        }
 
-		private Bitmap Pixelize(int pixelSize)
-		{
+        private Bitmap Pixelize(int pixelSize)
+        {
             var amountOfPixels = pixelSize * pixelSize;
             int r, g, b;
             Color averageColor;
             Color currentPixelColor;
-           	Bitmap pixelizedImage;
+            Bitmap pixelizedImage;
 
             lock (@lock)
             { 
@@ -87,30 +87,30 @@ namespace PixelArt
             }
 
             return pixelizedImage; 
-		}
+        }
 
-		private Bitmap ChangeColorToGrayscale(Bitmap original)
-		{
+        private Bitmap ChangeColorToGrayscale(Bitmap original)
+        {
             Color originalPixel;
             int grayscaleValue;
             Bitmap grayscale;
             
             lock (@lock)
-			{
+            {
                 grayscale = new Bitmap(original);
-			}
+            }
            
             for (var i = 0; i < grayscale.Width; i++)
-			{
+            {
                 for (var j = 0; j < grayscale.Height; j++)
-				{
-                   	originalPixel = grayscale.GetPixel(i, j);
+                {
+                    originalPixel = grayscale.GetPixel(i, j);
                     grayscaleValue = (int)((0.2627 * originalPixel.R) + (0.6780 * originalPixel.G) + (0.0593* originalPixel.B));
                     grayscale.SetPixel(i, j, Color.FromArgb(grayscaleValue, grayscaleValue, grayscaleValue));
-				}
-			}
+                }
+            }
 
             return grayscale; 
-		}
-	}
+        }
+    }
 }
