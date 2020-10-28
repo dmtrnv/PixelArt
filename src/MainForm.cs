@@ -16,7 +16,7 @@ namespace PixelArt
 			InitializeComponent();
 		}
 
-		private async void loadButtonClickAsync(object sender, EventArgs e)
+		private async void LoadButtonClickAsync(object sender, EventArgs e)
 		{
 			using (var fileDialog = new OpenFileDialog())
 			{ 
@@ -47,7 +47,7 @@ namespace PixelArt
 			}
 		}
 		
-		private void saveButtonClick(object sender, EventArgs e)
+		private void SaveButtonClick(object sender, EventArgs e)
 		{
 			using (var saveDialog = new SaveFileDialog())
 			{ 
@@ -82,12 +82,12 @@ namespace PixelArt
 			}				
 		}
 
-		private void pixelSizeComboBoxSelectedIndexChanged(object sender, EventArgs e)
+		private void PixelSizeComboBoxSelectedIndexChanged(object sender, EventArgs e)
 		{
 			CheckImageState();
 		}
 		
-		private void colorTypeComboBoxSelectedIndexChanged(object sender, EventArgs e)
+		private void ColorTypeComboBoxSelectedIndexChanged(object sender, EventArgs e)
 		{
 			CheckImageState();
 		}

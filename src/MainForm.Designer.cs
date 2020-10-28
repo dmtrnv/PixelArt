@@ -54,7 +54,7 @@
 			this.loadButton.TabIndex = 1;
 			this.loadButton.Text = "Load";
 			this.loadButton.UseVisualStyleBackColor = true;
-			this.loadButton.Click += new System.EventHandler(this.loadButtonClickAsync);
+			this.loadButton.Click += new System.EventHandler(this.LoadButtonClickAsync);
 			// 
 			// saveButton
 			// 
@@ -65,7 +65,7 @@
 			this.saveButton.Text = "Save";
 			this.saveButton.UseVisualStyleBackColor = true;
 			this.saveButton.Hide();
-			this.saveButton.Click += new System.EventHandler(this.saveButtonClick);
+			this.saveButton.Click += new System.EventHandler(this.SaveButtonClick);
 			// 
 			// pixelSizeComboBox
 			// 
@@ -76,7 +76,7 @@
 			this.pixelSizeComboBox.Size = new System.Drawing.Size(75, 23);
 			this.pixelSizeComboBox.TabIndex = 3;
 			this.pixelSizeComboBox.Hide();
-			this.pixelSizeComboBox.SelectedIndexChanged += new System.EventHandler(this.pixelSizeComboBoxSelectedIndexChanged);
+			this.pixelSizeComboBox.SelectedIndexChanged += new System.EventHandler(this.PixelSizeComboBoxSelectedIndexChanged);
 			// 
 			// colorTypeComboBox
 			// 
@@ -87,7 +87,7 @@
 			this.colorTypeComboBox.Size = new System.Drawing.Size(75, 23);
 			this.colorTypeComboBox.TabIndex = 4;
 			this.colorTypeComboBox.Hide();
-			this.colorTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.colorTypeComboBoxSelectedIndexChanged);
+			this.colorTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.ColorTypeComboBoxSelectedIndexChanged);
 			// 
 			// pixelSizeLabel
 			// 

@@ -27,19 +27,19 @@ namespace PixelArt
 			}
 
             Parallel.ForEach(PixelSize, size =>
-			    {
-				    var originalColor = Pixelize(size);
-				    var grayscale = ChangeColorToGrayscale(originalColor);
+			{
+				var originalColor = Pixelize(size);
+				var grayscale = ChangeColorToGrayscale(originalColor);
 
-				    if (Images.ContainsKey(size))
-				    {
-					    Images[size] = new PixelizedImage(originalColor, grayscale);
-				    }
-				    else
-				    {
-					    Images.Add(size, new PixelizedImage(originalColor, grayscale));
-				    }
-			    });
+				if (Images.ContainsKey(size))
+				{
+					Images[size] = new PixelizedImage(originalColor, grayscale);
+				}
+				else
+				{
+					Images.Add(size, new PixelizedImage(originalColor, grayscale));
+				}
+			});
 		}
 
 		private Bitmap Pixelize(int pixelSize)
@@ -48,7 +48,7 @@ namespace PixelArt
             int r, g, b;
             Color averageColor;
             Color currentPixelColor;
-            Bitmap pixelizedImage;
+           	Bitmap pixelizedImage;
 
             lock (@lock)
             { 
@@ -87,7 +87,7 @@ namespace PixelArt
             }
 
             return pixelizedImage; 
-	    }
+		}
 
 		private Bitmap ChangeColorToGrayscale(Bitmap original)
 		{
@@ -104,7 +104,7 @@ namespace PixelArt
 			{
                 for (var j = 0; j < grayscale.Height; j++)
 				{
-                    originalPixel = grayscale.GetPixel(i, j);
+                   	originalPixel = grayscale.GetPixel(i, j);
                     grayscaleValue = (int)((0.2627 * originalPixel.R) + (0.6780 * originalPixel.G) + (0.0593* originalPixel.B));
                     grayscale.SetPixel(i, j, Color.FromArgb(grayscaleValue, grayscaleValue, grayscaleValue));
 				}
