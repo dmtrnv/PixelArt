@@ -11,7 +11,7 @@ namespace PixelArt
         public PixelizedImage(Bitmap originalColor, Bitmap grayscale)
         {
             this.OriginalColor = originalColor;
-            this. Grayscale = grayscale;
+            this.Grayscale = grayscale;
         }
 
         public void Dispose()
